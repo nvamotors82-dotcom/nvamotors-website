@@ -17,11 +17,13 @@ import {
   Calendar,
   CreditCard
 } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 import { useToast } from '../hooks/use-toast';
 import { companyInfo } from '../data/mockData';
 import apiService from '../services/api';
 
 const ContactPage = () => {
+  const { t, language } = useLanguage();
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
@@ -44,8 +46,10 @@ const ContactPage = () => {
     try {
       await apiService.submitContactForm(formData);
       toast({
-        title: "Mensaje enviado",
-        description: "Nos pondremos en contacto contigo pronto.",
+        title: language === 'es' ? "Mensaje enviado" : "Message sent",
+        description: language === 'es' 
+          ? "Nos pondremos en contacto contigo pronto." 
+          : "We will get back to you soon.",
       });
       
       setFormData({
@@ -57,8 +61,10 @@ const ContactPage = () => {
       });
     } catch (error) {
       toast({
-        title: "Error",
-        description: "No se pudo enviar el mensaje. Inténtalo nuevamente.",
+        title: t('common.error'),
+        description: language === 'es'
+          ? "No se pudo enviar el mensaje. Inténtalo nuevamente."
+          : "Could not send message. Please try again.",
         variant: "destructive"
       });
     }
@@ -67,14 +73,14 @@ const ContactPage = () => {
   const contactInfo = [
     {
       icon: MapPin,
-      title: 'Dirección',
+      title: language === 'es' ? 'Dirección' : 'Address',
       details: [companyInfo.address.street, `${companyInfo.address.city}, ${companyInfo.address.state} ${companyInfo.address.zip}`],
       color: 'text-red-600'
     },
     {
       icon: Phone,
-      title: 'Teléfono',
-      details: [companyInfo.contact.phone, companyInfo.hours.weekdays],
+      title: language === 'es' ? 'Teléfono' : 'Phone',
+      details: [companyInfo.contact.phone, language === 'es' ? 'Lun - Vie: 9:00 AM - 6:00 PM' : 'Mon - Fri: 9:00 AM - 6:00 PM'],
       color: 'text-green-600'
     },
     {
@@ -85,8 +91,12 @@ const ContactPage = () => {
     },
     {
       icon: Clock,
-      title: 'Horarios',
-      details: [companyInfo.hours.weekdays, companyInfo.hours.saturday, companyInfo.hours.sunday],
+      title: language === 'es' ? 'Horarios' : 'Hours',
+      details: [
+        language === 'es' ? 'Lun - Vie: 9:00 AM - 6:00 PM' : 'Mon - Fri: 9:00 AM - 6:00 PM',
+        language === 'es' ? 'Sáb: 9:00 AM - 4:00 PM' : 'Sat: 9:00 AM - 4:00 PM',
+        language === 'es' ? 'Dom: Cerrado' : 'Sun: Closed'
+      ],
       color: 'text-orange-600'
     }
   ];
@@ -94,37 +104,50 @@ const ContactPage = () => {
   const services = [
     {
       icon: Car,
-      title: 'Venta de Vehículos',
-      description: 'Amplio inventario de autos nuevos y usados'
+      title: language === 'es' ? 'Venta de Vehículos' : 'Vehicle Sales',
+      description: language === 'es' ? 'Amplio inventario de autos nuevos y usados' : 'Wide inventory of new and used cars'
     },
     {
       icon: CreditCard,
-      title: 'Financiamiento',
-      description: 'Planes flexibles con las mejores tasas'
+      title: language === 'es' ? 'Financiamiento' : 'Financing',
+      description: language === 'es' ? 'Planes flexibles con las mejores tasas' : 'Flexible plans with the best rates'
     },
     {
       icon: Calendar,
-      title: 'Mantenimiento',
-      description: 'Servicio técnico especializado'
+      title: language === 'es' ? 'Mantenimiento' : 'Maintenance',
+      description: language === 'es' ? 'Servicio técnico especializado' : 'Specialized technical service'
     }
   ];
 
+  const subjectOptions = [
+    { value: 'general', label: language === 'es' ? 'Consulta General' : 'General Inquiry' },
+    { value: 'vehicle', label: language === 'es' ? 'Información de Vehículo' : 'Vehicle Information' },
+    { value: 'financing', label: language === 'es' ? 'Financiamiento' : 'Financing' },
+    { value: 'service', label: language === 'es' ? 'Servicio Técnico' : 'Technical Service' },
+    { value: 'test-drive', label: language === 'es' ? 'Prueba de Manejo' : 'Test Drive' }
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
       <Navbar />
       
       {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-          <Badge className="bg-red-100 text-red-800 px-4 py-2 mb-4">
-            Contacto
+      <div className="bg-gradient-to-br from-white to-gray-50 shadow-xl relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-red-600 rounded-full translate-x-48 -translate-y-48"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-600 rounded-full -translate-x-48 translate-y-48"></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+          <Badge className="bg-gradient-to-r from-red-100 to-red-200 text-red-800 px-6 py-3 mb-6 text-sm font-semibold shadow-lg">
+            {t('nav.contact')}
           </Badge>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Estamos Aquí para Ayudarte
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-6">
+            {t('contact.title')}
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            ¿Tienes alguna pregunta sobre nuestros vehículos o servicios? 
-            Contáctanos y te responderemos lo antes posible.
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            {t('contact.subtitle')}
           </p>
         </div>
       </div>
@@ -133,18 +156,18 @@ const ContactPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <Card>
+            <Card className="shadow-2xl border-0 bg-gradient-to-br from-white to-gray-50">
               <CardHeader>
-                <CardTitle className="text-2xl text-gray-900">
-                  Envíanos un Mensaje
+                <CardTitle className="text-3xl bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+                  {t('contact.sendMessage')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Nombre Completo *
+                        {t('contact.fullName')} *
                       </label>
                       <Input
                         type="text"
@@ -152,13 +175,14 @@ const ContactPage = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        placeholder="Tu nombre"
+                        placeholder={t('contact.fullName')}
+                        className="h-12 text-lg border-2 focus:border-red-500"
                       />
                     </div>
                     
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Email *
+                        {t('contact.email')} *
                       </label>
                       <Input
                         type="email"
@@ -166,15 +190,16 @@ const ContactPage = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        placeholder="nvamotors82@gmail.com"
+                        placeholder={companyInfo.contact.email}
+                        className="h-12 text-lg border-2 focus:border-red-500"
                       />
                     </div>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Teléfono
+                        {t('contact.phone')}
                       </label>
                       <Input
                         type="tel"
@@ -182,66 +207,77 @@ const ContactPage = () => {
                         value={formData.phone}
                         onChange={handleInputChange}
                         placeholder={companyInfo.contact.phone}
+                        className="h-12 text-lg border-2 focus:border-red-500"
                       />
                     </div>
                     
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Asunto
+                        {t('contact.subject')}
                       </label>
                       <select
                         name="subject"
                         value={formData.subject}
                         onChange={handleInputChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                        className="w-full h-12 px-3 py-2 border-2 border-gray-300 rounded-md focus:outline-none focus:border-red-500 text-lg"
                       >
-                        <option value="general">Consulta General</option>
-                        <option value="vehicle">Información de Vehículo</option>
-                        <option value="financing">Financiamiento</option>
-                        <option value="service">Servicio Técnico</option>
-                        <option value="test-drive">Prueba de Manejo</option>
+                        {subjectOptions.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
                       </select>
                     </div>
                   </div>
                   
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Mensaje *
+                      {t('contact.message')} *
                     </label>
                     <Textarea
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
                       required
-                      rows={5}
-                      placeholder="Cuéntanos cómo podemos ayudarte..."
+                      rows={6}
+                      placeholder={language === 'es' 
+                        ? "Cuéntanos cómo podemos ayudarte..." 
+                        : "Tell us how we can help you..."
+                      }
+                      className="text-lg border-2 focus:border-red-500"
                     />
                   </div>
                   
-                  <Button type="submit" size="lg" className="w-full md:w-auto bg-red-600 hover:bg-red-700">
+                  <Button 
+                    type="submit" 
+                    size="lg" 
+                    className="w-full md:w-auto bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-10 py-4 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                  >
                     <Send className="mr-2 h-5 w-5" />
-                    Enviar Mensaje
+                    {t('contact.send')}
                   </Button>
                 </form>
               </CardContent>
             </Card>
             
             {/* Services */}
-            <div className="mt-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Nuestros Servicios</h2>
+            <div className="mt-16">
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-8">
+                {t('contact.ourServices')}
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {services.map((service, index) => {
                   const IconComponent = service.icon;
                   return (
-                    <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-                      <CardContent className="p-6">
-                        <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                          <IconComponent className="h-6 w-6 text-red-600" />
+                    <Card key={index} className="text-center hover:shadow-2xl transition-all duration-500 border-0 bg-gradient-to-br from-white to-gray-50 group">
+                      <CardContent className="p-8">
+                        <div className="w-16 h-16 bg-gradient-to-br from-red-100 to-red-200 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                          <IconComponent className="h-8 w-8 text-red-600" />
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-red-600 transition-colors">
                           {service.title}
                         </h3>
-                        <p className="text-gray-600">{service.description}</p>
+                        <p className="text-gray-600 leading-relaxed">{service.description}</p>
                       </CardContent>
                     </Card>
                   );
@@ -255,18 +291,18 @@ const ContactPage = () => {
             {contactInfo.map((info, index) => {
               const IconComponent = info.icon;
               return (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
+                <Card key={index} className="hover:shadow-2xl transition-all duration-500 border-0 bg-gradient-to-br from-white to-gray-50">
+                  <CardContent className="p-8">
                     <div className="flex items-start space-x-4">
-                      <div className={`p-3 bg-gray-100 rounded-full ${info.color}`}>
+                      <div className={`p-4 bg-gray-100 rounded-2xl ${info.color}`}>
                         <IconComponent className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">
                           {info.title}
                         </h3>
                         {info.details.map((detail, detailIndex) => (
-                          <p key={detailIndex} className="text-gray-600">
+                          <p key={detailIndex} className="text-gray-600 leading-relaxed">
                             {detail}
                           </p>
                         ))}
@@ -277,52 +313,54 @@ const ContactPage = () => {
               );
             })}
             
-            {/* Owners Info */}
-            <Card className="bg-red-50">
-              <CardContent className="p-6 text-center">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                  Nuestro Equipo
+            {/* Founders Info */}
+            <Card className="bg-gradient-to-br from-red-50 to-orange-50 border-red-100 shadow-xl">
+              <CardContent className="p-8 text-center">
+                <h3 className="text-xl font-bold text-gray-900 mb-6">
+                  {t('common.founders')}
                 </h3>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-center space-x-2">
-                    <div className="w-2 h-2 bg-red-600 rounded-full"></div>
-                    <span className="font-semibold text-gray-900">{companyInfo.owner}</span>
-                    <span className="text-gray-600">- Propietario</span>
-                  </div>
-                  <div className="flex items-center justify-center space-x-2">
-                    <div className="w-2 h-2 bg-red-600 rounded-full"></div>
-                    <span className="font-semibold text-gray-900">{companyInfo.partner}</span>
-                    <span className="text-gray-600">- Socio Principal</span>
-                  </div>
+                <div className="space-y-3">
+                  {companyInfo.founders.map((founder, index) => (
+                    <div key={index} className="flex items-center justify-center space-x-3">
+                      <div className="w-3 h-3 bg-gradient-to-r from-red-600 to-red-700 rounded-full"></div>
+                      <span className="font-bold text-gray-900">{founder.name}</span>
+                      <span className="text-gray-600">- {t(`home.${founder.role}`)}</span>
+                    </div>
+                  ))}
                 </div>
               </CardContent>
             </Card>
             
             {/* Quick Contact */}
-            <Card className="bg-green-50">
-              <CardContent className="p-6 text-center">
-                <MessageCircle className="h-12 w-12 text-green-600 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  ¿Necesitas Respuesta Inmediata?
+            <Card className="bg-gradient-to-br from-green-50 to-blue-50 border-green-200 shadow-xl">
+              <CardContent className="p-8 text-center">
+                <MessageCircle className="h-16 w-16 text-green-600 mx-auto mb-6" />
+                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  {language === 'es' ? '¿Necesitas Respuesta Inmediata?' : 'Need Immediate Response?'}
                 </h3>
-                <p className="text-gray-600 mb-4">
-                  Contáctanos por WhatsApp para atención personalizada
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  {language === 'es' 
+                    ? 'Contáctanos por WhatsApp para atención personalizada'
+                    : 'Contact us via WhatsApp for personalized attention'
+                  }
                 </p>
-                <Button className="bg-green-600 hover:bg-green-700 text-white">
+                <Button className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                   <MessageCircle className="mr-2 h-4 w-4" />
-                  Chatear Ahora
+                  {language === 'es' ? 'Chatear Ahora' : 'Chat Now'}
                 </Button>
               </CardContent>
             </Card>
             
             {/* Map Placeholder */}
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Ubicación</h3>
-                <div className="w-full h-48 bg-gray-200 rounded-lg flex items-center justify-center">
+            <Card className="shadow-xl border-0 bg-gradient-to-br from-white to-gray-50">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-bold text-gray-900 mb-6">
+                  {language === 'es' ? 'Ubicación' : 'Location'}
+                </h3>
+                <div className="w-full h-56 bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl flex items-center justify-center">
                   <div className="text-center">
-                    <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-2" />
-                    <p className="text-gray-500 text-sm">{companyInfo.address.full}</p>
+                    <MapPin className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+                    <p className="text-gray-500 font-medium">{companyInfo.address.full}</p>
                   </div>
                 </div>
               </CardContent>
