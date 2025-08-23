@@ -18,7 +18,7 @@ class TestimonialUpdate(BaseModel):
     rating: Optional[int] = Field(None, ge=1, le=5)
     comment: Optional[str] = Field(None, min_length=1, max_length=1000)
     vehicle: Optional[str] = Field(None, max_length=100)
-    date: Optional[date] = None
+    testimonial_date: Optional[date] = None
     is_approved: Optional[bool] = None
 
 class Testimonial(TestimonialBase):
