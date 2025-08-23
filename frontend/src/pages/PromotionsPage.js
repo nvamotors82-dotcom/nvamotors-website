@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
-import { Calendar, Tag, Gift, CreditCard, RefreshCw, Percent } from 'lucide-react';
+import { Calendar, Tag, Gift, CreditCard, RefreshCw, Percent, Phone, MessageCircle } from 'lucide-react';
 import { mockPromotions } from '../data/mockData';
 
 const PromotionCard = ({ promotion }) => {
