@@ -123,3 +123,88 @@ export const mockServices = [
     icon: "Search"
   }
 ];
+
+export const mockFAQs = [
+  {
+    id: 1,
+    question: "¿Qué documentos necesito para comprar un vehículo?",
+    answer: "Necesitas identificación válida, comprobante de ingresos, comprobante de domicilio y, si aplica, documentos del vehículo a intercambiar."
+  },
+  {
+    id: 2,
+    question: "¿Ofrecen financiamiento para personas con mal crédito?",
+    answer: "Sí, trabajamos con múltiples instituciones financieras para ofrecer opciones de financiamiento para todo tipo de historial crediticio."
+  },
+  {
+    id: 3,
+    question: "¿Puedo hacer una prueba de manejo?",
+    answer: "Por supuesto, todas las pruebas de manejo se realizan con cita previa y con identificación válida."
+  },
+  {
+    id: 4,
+    question: "¿Qué garantía incluyen los vehículos usados?",
+    answer: "Todos nuestros vehículos usados incluyen garantía limitada y han pasado una inspección de 150 puntos."
+  },
+  {
+    id: 5,
+    question: "¿Aceptan intercambios de vehículos?",
+    answer: "Sí, evaluamos tu vehículo actual y ofrecemos un valor justo como parte de pago por tu nuevo auto."
+  }
+];
+
+export const mockPromotions = [
+  {
+    id: 1,
+    title: "Financiamiento 0% APR",
+    description: "Hasta 60 meses sin intereses en vehículos seleccionados",
+    validUntil: "2025-02-28",
+    type: "financing",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    id: 2,
+    title: "Descuento por Intercambio",
+    description: "Hasta $5,000 adicionales por tu vehículo usado",
+    validUntil: "2025-01-31",
+    type: "trade-in",
+    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+  },
+  {
+    id: 3,
+    title: "Especial de Fin de Año",
+    description: "Hasta $3,000 de descuento en vehículos 2023-2024",
+    validUntil: "2025-01-15",
+    type: "discount",
+    image: "https://images.unsplash.com/photo-1485291571150-772bcfc10da5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+  }
+];
+
+export const companyInfo = {
+  name: "NVAMOTORS",
+  tagline: "DEALERSHIP", 
+  owner: "Niovanys Valdes",
+  partner: "Seth Lennet",
+  address: {
+    street: "2539 E Fremont Street",
+    city: "Las Vegas",
+    state: "NV", 
+    zip: "89104",
+    full: "2539 E Fremont Street, Las Vegas, NV 89104"
+  },
+  contact: {
+    phone: "(702) 501-9216",
+    email: "nvamotors82@gmail.com",
+    website: "www.nvamotors.com"
+  },
+  hours: {
+    weekdays: "Lun - Vie: 9:00 AM - 6:00 PM",
+    saturday: "Sáb: 9:00 AM - 4:00 PM", 
+    sunday: "Dom: Cerrado"
+  },
+  social: {
+    facebook: "https://facebook.com/nvamotors",
+    instagram: "https://instagram.com/nvamotors", 
+    twitter: "https://twitter.com/nvamotors"
+  },
+  logo: "https://customer-assets.emergentagent.com/job_nvamotors-dealer/artifacts/dy1o1dy4_5441CF5C-6B0D-4629-A1A9-E621F13B5571.PNG"
+};
