@@ -112,7 +112,15 @@ export const translations = {
       close: "Cerrar",
       next: "Siguiente",
       previous: "Anterior",
-      required: "Requerido"
+      required: "Requerido",
+      results: "Resultados",
+      founders: "Fundadores",
+      qualityGuaranteed: "Calidad Garantizada",
+      inspection150Points: "Inspección de 150 puntos",
+      loanAmount: "Monto del Préstamo",
+      enterValues: "Ingresa los valores para calcular tus pagos",
+      importantInfo: "Información Importante",
+      testDriveInfo: "Las pruebas de manejo requieren identificación válida y están sujetas a disponibilidad. Te contactaremos para confirmar tu cita."
     }
   },
   
