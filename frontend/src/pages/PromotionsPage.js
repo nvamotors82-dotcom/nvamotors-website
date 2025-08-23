@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
-import { Calendar, Tag, Gift, CreditCard, RefreshCw, Percent, Phone, MessageCircle } from 'lucide-react';
-import { mockPromotions } from '../data/mockData';
+import { Calendar, Tag, Gift, CreditCard, RefreshCw, Percent, Phone, MessageCircle, Loader2 } from 'lucide-react';
+import apiService from '../services/api';
 
 const PromotionCard = ({ promotion }) => {
   const icons = {
