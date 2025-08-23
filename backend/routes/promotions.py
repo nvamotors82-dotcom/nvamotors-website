@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends
 from typing import List
 from motor.motor_asyncio import AsyncIOMotorDatabase
 from ..models.promotion import Promotion, PromotionCreate, PromotionUpdate
-from datetime import date
+from datetime import date, datetime
 import os
 from motor.motor_asyncio import AsyncIOMotorClient
 
