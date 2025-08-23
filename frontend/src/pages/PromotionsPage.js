@@ -24,7 +24,7 @@ const PromotionCard = ({ promotion }) => {
     return days;
   };
 
-  const daysRemaining = getTimeRemaining(promotion.validUntil);
+  const daysRemaining = getTimeRemaining(promotion.valid_until);
 
   return (
     <Card className="group hover:shadow-xl transition-all duration-300 overflow-hidden">
