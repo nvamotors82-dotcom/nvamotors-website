@@ -113,7 +113,18 @@ const FAQPage = () => {
               Preguntas y Respuestas
             </h2>
             
-            {filteredFAQs.length > 0 ? (
+            {loading ? (
+              <div className="flex justify-center py-16">
+                <Loader2 className="h-12 w-12 animate-spin text-blue-600" />
+              </div>
+            ) : error ? (
+              <div className="text-center py-8">
+                <p className="text-red-600 mb-4">{error}</p>
+                <Button onClick={() => window.location.reload()}>
+                  Reintentar
+                </Button>
+              </div>
+            ) : filteredFAQs.length > 0 ? (
               <Accordion type="single" collapsible className="space-y-4">
                 {filteredFAQs.map((faq) => (
                   <AccordionItem key={faq.id} value={`item-${faq.id}`} className="border rounded-lg px-4">
