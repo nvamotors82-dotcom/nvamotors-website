@@ -25,11 +25,45 @@ import apiService from '../services/api';
 
 const VehicleDetailPage = () => {
   const { id } = useParams();
+  const [vehicle, setVehicle] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [currentImage, setCurrentImage] = useState(0);
   
-  const vehicle = mockVehicles.find(v => v.id === parseInt(id));
+  useEffect(() => {
+    const fetchVehicle = async () => {
+      try {
+        setLoading(true);
+        const vehicleData = await apiService.getVehicleById(id);
+        setVehicle(vehicleData);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching vehicle:', err);
+        setError('Vehículo no encontrado');
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  if (!vehicle) {
+    if (id) {
+      fetchVehicle();
+    }
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Navbar />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+          <Loader2 className="h-12 w-12 animate-spin text-blue-600 mx-auto mb-4" />
+          <p className="text-gray-600">Cargando vehículo...</p>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (error || !vehicle) {
     return (
       <div className="min-h-screen bg-gray-50">
         <Navbar />
