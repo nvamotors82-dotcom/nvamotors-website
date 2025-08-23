@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends
 from typing import List
 from motor.motor_asyncio import AsyncIOMotorDatabase
 from ..models.faq import FAQ, FAQCreate, FAQUpdate, FAQQuestion, FAQQuestionCreate
+from datetime import datetime
 import os
 from motor.motor_asyncio import AsyncIOMotorClient
 
