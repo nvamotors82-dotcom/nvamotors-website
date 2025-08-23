@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Badge } from './ui/badge';
 import { Search, Send, Car, DollarSign, Calendar, Settings } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
+import apiService from '../services/api';
 
 const CustomSearchForm = () => {
   const { toast } = useToast();
