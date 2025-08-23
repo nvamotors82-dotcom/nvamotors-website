@@ -68,6 +68,27 @@ const PromotionCard = ({ promotion }) => {
 };
 
 const PromotionsPage = () => {
+  const [promotions, setPromotions] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchPromotions = async () => {
+      try {
+        setLoading(true);
+        const response = await apiService.getPromotions();
+        setPromotions(response.promotions || []);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching promotions:', err);
+        setError('Error al cargar promociones');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPromotions();
+  }, []);
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
