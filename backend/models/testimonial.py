@@ -8,7 +8,7 @@ class TestimonialBase(BaseModel):
     rating: int = Field(..., ge=1, le=5)
     comment: str = Field(..., min_length=1, max_length=1000)
     vehicle: Optional[str] = Field(None, max_length=100)
-    date: date = Field(default_factory=lambda: datetime.now().date())
+    testimonial_date: date = Field(default_factory=lambda: datetime.now().date())
 
 class TestimonialCreate(TestimonialBase):
     pass
