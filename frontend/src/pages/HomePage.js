@@ -5,6 +5,7 @@ import HeroSection from '../components/HeroSection';
 import FeaturedVehicles from '../components/FeaturedVehicles';
 import Services from '../components/Services';
 import Testimonials from '../components/Testimonials';
+import CustomSearchForm from '../components/CustomSearchForm';
 import CTASection from '../components/CTASection';
 
 const HomePage = () => {
@@ -14,6 +15,7 @@ const HomePage = () => {
       <HeroSection />
       <FeaturedVehicles />
       <Services />
+      <CustomSearchForm />
       <Testimonials />
       <CTASection />
       <Footer />

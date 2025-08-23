@@ -18,6 +18,7 @@ import {
   CreditCard
 } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
+import { companyInfo } from '../data/mockData';
 
 const ContactPage = () => {
   const { toast } = useToast();
@@ -39,13 +40,11 @@ const ContactPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Mock form submission
     toast({
       title: "Mensaje enviado",
       description: "Nos pondremos en contacto contigo pronto.",
     });
     
-    // Reset form
     setFormData({
       name: '',
       email: '',
@@ -59,25 +58,25 @@ const ContactPage = () => {
     {
       icon: MapPin,
       title: 'Dirección',
-      details: ['123 Av. Principal', 'Ciudad, Estado 12345'],
-      color: 'text-blue-600'
+      details: [companyInfo.address.street, `${companyInfo.address.city}, ${companyInfo.address.state} ${companyInfo.address.zip}`],
+      color: 'text-red-600'
     },
     {
       icon: Phone,
       title: 'Teléfono',
-      details: ['+1 (555) 123-4567', 'Lun - Vie: 9:00 - 18:00'],
+      details: [companyInfo.contact.phone, companyInfo.hours.weekdays],
       color: 'text-green-600'
     },
     {
       icon: Mail,
       title: 'Email',
-      details: ['nvamotors82@gmail.com', 'ventas@nvamotors.com'],
+      details: [companyInfo.contact.email, 'ventas@nvamotors.com'],
       color: 'text-purple-600'
     },
     {
       icon: Clock,
       title: 'Horarios',
-      details: ['Lun - Vie: 9:00 - 18:00', 'Sáb: 9:00 - 16:00', 'Dom: Cerrado'],
+      details: [companyInfo.hours.weekdays, companyInfo.hours.saturday, companyInfo.hours.sunday],
       color: 'text-orange-600'
     }
   ];
@@ -107,7 +106,7 @@ const ContactPage = () => {
       {/* Header */}
       <div className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-          <Badge className="bg-blue-100 text-blue-800 px-4 py-2 mb-4">
+          <Badge className="bg-red-100 text-red-800 px-4 py-2 mb-4">
             Contacto
           </Badge>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -172,7 +171,7 @@ const ContactPage = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        placeholder="+1 (555) 123-4567"
+                        placeholder={companyInfo.contact.phone}
                       />
                     </div>
                     
@@ -184,7 +183,7 @@ const ContactPage = () => {
                         name="subject"
                         value={formData.subject}
                         onChange={handleInputChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
                       >
                         <option value="general">Consulta General</option>
                         <option value="vehicle">Información de Vehículo</option>
@@ -209,7 +208,7 @@ const ContactPage = () => {
                     />
                   </div>
                   
-                  <Button type="submit" size="lg" className="w-full md:w-auto bg-blue-600 hover:bg-blue-700">
+                  <Button type="submit" size="lg" className="w-full md:w-auto bg-red-600 hover:bg-red-700">
                     <Send className="mr-2 h-5 w-5" />
                     Enviar Mensaje
                   </Button>
@@ -226,8 +225,8 @@ const ContactPage = () => {
                   return (
                     <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                       <CardContent className="p-6">
-                        <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                          <IconComponent className="h-6 w-6 text-blue-600" />
+                        <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <IconComponent className="h-6 w-6 text-red-600" />
                         </div>
                         <h3 className="text-lg font-semibold text-gray-900 mb-2">
                           {service.title}
@@ -268,10 +267,31 @@ const ContactPage = () => {
               );
             })}
             
-            {/* Quick Contact */}
-            <Card className="bg-blue-50">
+            {/* Owners Info */}
+            <Card className="bg-red-50">
               <CardContent className="p-6 text-center">
-                <MessageCircle className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                  Nuestro Equipo
+                </h3>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-center space-x-2">
+                    <div className="w-2 h-2 bg-red-600 rounded-full"></div>
+                    <span className="font-semibold text-gray-900">{companyInfo.owner}</span>
+                    <span className="text-gray-600">- Propietario</span>
+                  </div>
+                  <div className="flex items-center justify-center space-x-2">
+                    <div className="w-2 h-2 bg-red-600 rounded-full"></div>
+                    <span className="font-semibold text-gray-900">{companyInfo.partner}</span>
+                    <span className="text-gray-600">- Socio Principal</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            
+            {/* Quick Contact */}
+            <Card className="bg-green-50">
+              <CardContent className="p-6 text-center">
+                <MessageCircle className="h-12 w-12 text-green-600 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   ¿Necesitas Respuesta Inmediata?
                 </h3>
@@ -292,7 +312,7 @@ const ContactPage = () => {
                 <div className="w-full h-48 bg-gray-200 rounded-lg flex items-center justify-center">
                   <div className="text-center">
                     <MapPin className="h-12 w-12 text-gray-400 mx-auto mb-2" />
-                    <p className="text-gray-500">Mapa Interactivo</p>
+                    <p className="text-gray-500 text-sm">{companyInfo.address.full}</p>
                   </div>
                 </div>
               </CardContent>
