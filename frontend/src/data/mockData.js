@@ -182,8 +182,23 @@ export const mockPromotions = [
 export const companyInfo = {
   name: "NVAMOTORS",
   tagline: "DEALERSHIP", 
-  owner: "Niovanys Valdes",
-  partner: "Seth Lennet",
+  founders: [
+    {
+      name: "Niovanys V",
+      role: "founder",
+      fullName: "Niovanys Valdes"
+    },
+    {
+      name: "Ana G", 
+      role: "coFounder",
+      fullName: "Ana García"
+    },
+    {
+      name: "Seth L",
+      role: "partner", 
+      fullName: "Seth Lennet"
+    }
+  ],
   address: {
     street: "2539 E Fremont Street",
     city: "Las Vegas",
@@ -197,9 +212,9 @@ export const companyInfo = {
     website: "www.nvamotors.com"
   },
   hours: {
-    weekdays: "Lun - Vie: 9:00 AM - 6:00 PM",
-    saturday: "Sáb: 9:00 AM - 4:00 PM", 
-    sunday: "Dom: Cerrado"
+    weekdays: "Mon - Fri: 9:00 AM - 6:00 PM",
+    saturday: "Sat: 9:00 AM - 4:00 PM", 
+    sunday: "Sun: Closed"
   },
   social: {
     facebook: "https://facebook.com/nvamotors",
