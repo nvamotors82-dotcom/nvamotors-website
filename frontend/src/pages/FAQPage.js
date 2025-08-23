@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Card, CardContent } from '../components/ui/card';
@@ -7,8 +7,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '..
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { Button } from '../components/ui/button';
-import { HelpCircle, Search, MessageCircle, Send, Phone } from 'lucide-react';
-import { mockFAQs } from '../data/mockData';
+import { HelpCircle, Search, MessageCircle, Send, Phone, Loader2 } from 'lucide-react';
+import apiService from '../services/api';
 import { useToast } from '../hooks/use-toast';
 
 const FAQPage = () => {
