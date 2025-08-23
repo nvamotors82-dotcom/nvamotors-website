@@ -13,7 +13,7 @@ export const translations = {
     
     // Home Page
     home: {
-      tagline: "#1 en Las Vegas",
+      tagline: "#1 Concesionario en Las Vegas",
       title: "Encuentra tu",
       titleHighlight: "vehículo ideal",
       subtitle: "En NVAMOTORS te ayudamos a encontrar el auto perfecto con los mejores precios, financiamiento accesible y garantía completa.",
@@ -101,6 +101,38 @@ export const translations = {
       success: "Cita programada exitosamente",
       successDesc: "Te contactaremos pronto para confirmar tu prueba de manejo."
     },
+
+    // Inventory
+    inventory: {
+      title: "Nuestro Inventario",
+      subtitle: "Explora nuestra amplia selección de vehículos de calidad",
+      filters: "Filtros",
+      searchPlaceholder: "Buscar marca o modelo...",
+      allMakes: "Todas las marcas",
+      allConditions: "Todas las condiciones",
+      allPrices: "Todos los precios",
+      clearFilters: "Limpiar Filtros",
+      showing: "Mostrando",
+      of: "de",
+      vehicles: "vehículos",
+      noResults: "No se encontraron vehículos",
+      noResultsDesc: "Intenta ajustar los filtros para encontrar más opciones",
+      viewAll: "Ver Todos los Vehículos"
+    },
+
+    // Contact
+    contact: {
+      title: "Estamos Aquí para Ayudarte",
+      subtitle: "¿Tienes alguna pregunta sobre nuestros vehículos o servicios? Contáctanos y te responderemos lo antes posible.",
+      sendMessage: "Envíanos un Mensaje",
+      fullName: "Nombre Completo",
+      email: "Email",
+      phone: "Teléfono",
+      subject: "Asunto",
+      message: "Mensaje",
+      send: "Enviar Mensaje",
+      ourServices: "Nuestros Servicios"
+    },
     
     // Common
     common: {
@@ -120,7 +152,8 @@ export const translations = {
       loanAmount: "Monto del Préstamo",
       enterValues: "Ingresa los valores para calcular tus pagos",
       importantInfo: "Información Importante",
-      testDriveInfo: "Las pruebas de manejo requieren identificación válida y están sujetas a disponibilidad. Te contactaremos para confirmar tu cita."
+      testDriveInfo: "Las pruebas de manejo requieren identificación válida y están sujetas a disponibilidad. Te contactaremos para confirmar tu cita.",
+      more: "más"
     }
   },
   
@@ -226,6 +259,38 @@ export const translations = {
       success: "Appointment scheduled successfully",
       successDesc: "We will contact you soon to confirm your test drive."
     },
+
+    // Inventory
+    inventory: {
+      title: "Our Inventory",
+      subtitle: "Explore our wide selection of quality vehicles",
+      filters: "Filters",
+      searchPlaceholder: "Search make or model...",
+      allMakes: "All makes",
+      allConditions: "All conditions",
+      allPrices: "All prices",
+      clearFilters: "Clear Filters",
+      showing: "Showing",
+      of: "of",
+      vehicles: "vehicles",
+      noResults: "No vehicles found",
+      noResultsDesc: "Try adjusting the filters to find more options",
+      viewAll: "View All Vehicles"
+    },
+
+    // Contact
+    contact: {
+      title: "We're Here to Help You",
+      subtitle: "Do you have any questions about our vehicles or services? Contact us and we'll get back to you as soon as possible.",
+      sendMessage: "Send us a Message",
+      fullName: "Full Name",
+      email: "Email",
+      phone: "Phone",
+      subject: "Subject",
+      message: "Message",
+      send: "Send Message",
+      ourServices: "Our Services"
+    },
     
     // Common
     common: {
@@ -245,7 +310,8 @@ export const translations = {
       loanAmount: "Loan Amount",
       enterValues: "Enter values to calculate your payments",
       importantInfo: "Important Information",
-      testDriveInfo: "Test drives require valid identification and are subject to availability. We will contact you to confirm your appointment."
+      testDriveInfo: "Test drives require valid identification and are subject to availability. We will contact you to confirm your appointment.",
+      more: "more"
     }
   }
 };
