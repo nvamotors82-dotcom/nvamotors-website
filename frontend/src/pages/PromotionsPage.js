@@ -14,7 +14,7 @@ const PromotionCard = ({ promotion }) => {
     discount: Percent
   };
   
-  const IconComponent = icons[promotion.type] || Gift;
+  const IconComponent = icons[promotion.promotion_type] || Gift;
   
   const getTimeRemaining = (validUntil) => {
     const now = new Date();
