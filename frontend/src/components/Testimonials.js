@@ -54,7 +54,7 @@ const TestimonialCard = ({ testimonial }) => {
             <div>
               <div className="font-semibold text-gray-900">{testimonial.name}</div>
               <div className="text-sm text-gray-500">
-                {new Date(testimonial.date).toLocaleDateString('es-ES', {
+                {new Date(testimonial.testimonial_date).toLocaleDateString('es-ES', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric'
