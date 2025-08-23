@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 from typing import List
 from motor.motor_asyncio import AsyncIOMotorDatabase
-from ..models.testimonial import Testimonial, TestimonialCreate, TestimonialUpdate
+from models.testimonial import Testimonial, TestimonialCreate, TestimonialUpdate
 from datetime import datetime
 import os
 from motor.motor_asyncio import AsyncIOMotorClient
