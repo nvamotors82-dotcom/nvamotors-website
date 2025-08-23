@@ -55,7 +55,7 @@ const PromotionCard = ({ promotion }) => {
         
         <div className="flex items-center space-x-2 text-sm text-gray-500">
           <Calendar className="h-4 w-4" />
-          <span>Válida hasta: {new Date(promotion.validUntil).toLocaleDateString('es-ES')}</span>
+          <span>Válida hasta: {new Date(promotion.valid_until).toLocaleDateString('es-ES')}</span>
         </div>
         
         <Button className="w-full bg-red-600 hover:bg-red-700 text-white">
