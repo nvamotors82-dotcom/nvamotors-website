@@ -38,25 +38,34 @@ const CustomSearchForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast({
-      title: "Solicitud enviada",
-      description: "Nuestro equipo te contactará pronto con opciones personalizadas.",
-    });
-    
-    // Reset form
-    setSearchForm({
-      name: '',
-      email: '',
-      phone: '',
-      preferredBrand: '',
-      budgetRange: '',
-      vehicleType: '',
-      yearRange: '',
-      specificRequirements: '',
-      suggestions: ''
-    });
+    try {
+      await apiService.submitCustomSearch(searchForm);
+      toast({
+        title: "Solicitud enviada",
+        description: "Nuestro equipo te contactará pronto con opciones personalizadas.",
+      });
+      
+      // Reset form
+      setSearchForm({
+        name: '',
+        email: '',
+        phone: '',
+        preferredBrand: '',
+        budgetRange: '',
+        vehicleType: '',
+        yearRange: '',
+        specificRequirements: '',
+        suggestions: ''
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "No se pudo enviar la solicitud. Inténtalo nuevamente.",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
