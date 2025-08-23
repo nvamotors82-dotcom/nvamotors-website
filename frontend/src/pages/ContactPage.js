@@ -71,7 +71,7 @@ const ContactPage = () => {
     {
       icon: Mail,
       title: 'Email',
-      details: ['info@nvamotors.com', 'ventas@nvamotors.com'],
+      details: ['nvamotors82@gmail.com', 'ventas@nvamotors.com'],
       color: 'text-purple-600'
     },
     {
