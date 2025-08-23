@@ -94,7 +94,59 @@ const VehicleCard = ({ vehicle }) => {
 };
 
 const FeaturedVehicles = () => {
-  const featuredVehicles = mockVehicles.slice(0, 3);
+  const [featuredVehicles, setFeaturedVehicles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchVehicles = async () => {
+      try {
+        setLoading(true);
+        const response = await apiService.getVehicles({ limit: 3 });
+        setFeaturedVehicles(response.vehicles || []);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching featured vehicles:', err);
+        setError('Error al cargar vehículos');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchVehicles();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center space-y-4 mb-16">
+            <Badge className="bg-blue-100 text-blue-800 px-4 py-2">
+              Vehículos Destacados
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              Nuestros Mejores Vehículos
+            </h2>
+          </div>
+          <div className="flex justify-center">
+            <Loader2 className="h-12 w-12 animate-spin text-blue-600" />
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-red-600">{error}</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-20 bg-white">
