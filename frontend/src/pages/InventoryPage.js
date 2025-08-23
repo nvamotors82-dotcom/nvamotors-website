@@ -98,31 +98,56 @@ const VehicleCard = ({ vehicle }) => {
 };
 
 const InventoryPage = () => {
+  const [vehicles, setVehicles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedMake, setSelectedMake] = useState('all');
   const [selectedCondition, setSelectedCondition] = useState('all');
   const [priceRange, setPriceRange] = useState('all');
 
-  // Get unique makes for filter
-  const uniqueMakes = [...new Set(mockVehicles.map(v => v.make))];
-
-  // Filter vehicles
-  const filteredVehicles = useMemo(() => {
-    return mockVehicles.filter(vehicle => {
-      const matchesSearch = vehicle.make.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           vehicle.model.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesMake = selectedMake === 'all' || vehicle.make === selectedMake;
-      const matchesCondition = selectedCondition === 'all' || vehicle.condition === selectedCondition;
-      
-      let matchesPrice = true;
-      if (priceRange !== 'all') {
-        const [min, max] = priceRange.split('-').map(Number);
-        matchesPrice = vehicle.price >= min && (max ? vehicle.price <= max : true);
+  // Fetch vehicles from backend
+  useEffect(() => {
+    const fetchVehicles = async () => {
+      try {
+        setLoading(true);
+        const params = {};
+        
+        if (searchTerm) params.search = searchTerm;
+        if (selectedMake !== 'all') params.make = selectedMake;
+        if (selectedCondition !== 'all') params.condition = selectedCondition;
+        
+        if (priceRange !== 'all') {
+          const [min, max] = priceRange.split('-').map(Number);
+          if (min) params.min_price = min;
+          if (max) params.max_price = max;
+        }
+        
+        const response = await apiService.getVehicles(params);
+        setVehicles(response.vehicles || []);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching vehicles:', err);
+        setError('Error al cargar vehículos');
+      } finally {
+        setLoading(false);
       }
-      
-      return matchesSearch && matchesMake && matchesCondition && matchesPrice;
-    });
-  }, [searchTerm, selectedMake, selectedCondition, priceRange, mockVehicles]);
+    };
+
+    const debounceTimer = setTimeout(() => {
+      fetchVehicles();
+    }, 300); // Debounce search
+
+    return () => clearTimeout(debounceTimer);
+  }, [searchTerm, selectedMake, selectedCondition, priceRange]);
+
+  // Get unique makes from current vehicles for filter
+  const uniqueMakes = useMemo(() => {
+    return [...new Set(vehicles.map(v => v.make))];
+  }, [vehicles]);
+
+  // Filter is now handled by backend, so we use all vehicles
+  const filteredVehicles = vehicles;
 
   return (
     <div className="min-h-screen bg-gray-50">
