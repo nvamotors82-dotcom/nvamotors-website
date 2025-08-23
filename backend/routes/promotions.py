@@ -24,7 +24,7 @@ async def get_promotions(
     
     if active_only:
         query["is_active"] = True
-        query["valid_until"] = {"$gte": date.today()}
+        query["valid_until"] = {"$gte": date.today().isoformat()}
     
     promotions = []
     cursor = db.promotions.find(query).sort("created_at", -1)
