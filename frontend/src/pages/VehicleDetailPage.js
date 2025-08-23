@@ -93,7 +93,7 @@ const VehicleDetailPage = () => {
     { label: 'Año', value: vehicle.year, icon: Calendar },
     { label: 'Kilometraje', value: `${vehicle.mileage.toLocaleString()} km`, icon: Gauge },
     { label: 'Transmisión', value: vehicle.transmission, icon: Zap },
-    { label: 'Combustible', value: vehicle.fuelType, icon: Fuel },
+    { label: 'Combustible', value: vehicle.fuel_type, icon: Fuel },
     { label: 'Condición', value: vehicle.condition, icon: Shield }
   ];
 
