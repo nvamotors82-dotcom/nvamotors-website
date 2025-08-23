@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardFooter } from './ui/card';
 import { Badge } from './ui/badge';
-import { Fuel, Zap, Eye, Heart } from 'lucide-react';
+import { Fuel, Zap, Eye, Heart, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { mockVehicles } from '../data/mockData';
+import apiService from '../services/api';
 
 const VehicleCard = ({ vehicle }) => {
   const formatPrice = (price) => {
