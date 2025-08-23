@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 from typing import List
 from motor.motor_asyncio import AsyncIOMotorDatabase
-from ..models.contact import ContactSubmission, ContactSubmissionCreate, CustomSearchRequest, CustomSearchRequestCreate
+from models.contact import ContactSubmission, ContactSubmissionCreate, CustomSearchRequest, CustomSearchRequestCreate
 import os
 from motor.motor_asyncio import AsyncIOMotorClient
 
