@@ -192,7 +192,7 @@ SAMPLE_TESTIMONIALS = [
         "rating": 5,
         "comment": "Excelente atención y los mejores precios. Encontré el auto perfecto para mi familia.",
         "vehicle": "Toyota Camry 2023",
-        "date": datetime(2024, 12, 15),
+        "testimonial_date": "2024-12-15",
         "is_approved": True,
         "created_at": datetime.utcnow(),
         "updated_at": datetime.utcnow()
