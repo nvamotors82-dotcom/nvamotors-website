@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
 import { companyInfo } from '../data/mockData';
-import { apiService } from '../services/api';
+import apiService from '../services/api';
 
 const ContactPage = () => {
   const { toast } = useToast();
