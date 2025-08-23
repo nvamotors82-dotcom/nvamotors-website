@@ -38,20 +38,29 @@ const ContactPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast({
-      title: "Mensaje enviado",
-      description: "Nos pondremos en contacto contigo pronto.",
-    });
-    
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: 'general',
-      message: ''
-    });
+    try {
+      await apiService.submitContactForm(formData);
+      toast({
+        title: "Mensaje enviado",
+        description: "Nos pondremos en contacto contigo pronto.",
+      });
+      
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: 'general',
+        message: ''
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "No se pudo enviar el mensaje. Inténtalo nuevamente.",
+        variant: "destructive"
+      });
+    }
   };
 
   const contactInfo = [
