@@ -163,7 +163,7 @@ SAMPLE_PROMOTIONS = [
         "id": "2",
         "title": "Descuento por Intercambio",
         "description": "Hasta $5,000 adicionales por tu vehículo usado",
-        "valid_until": date(2025, 1, 31),
+        "valid_until": datetime(2025, 1, 31),
         "promotion_type": "trade-in",
         "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
         "terms": "Válido para intercambios de vehículos 2015 o más nuevos.",
