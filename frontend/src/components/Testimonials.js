@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from './ui/card';
 import { Badge } from './ui/badge';
 import { Avatar, AvatarFallback } from './ui/avatar';
-import { Star, Quote } from 'lucide-react';
-import { mockTestimonials } from '../data/mockData';
+import { Star, Quote, Loader2 } from 'lucide-react';
+import apiService from '../services/api';
 
 const TestimonialCard = ({ testimonial }) => {
   const renderStars = (rating) => {
