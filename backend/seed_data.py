@@ -151,7 +151,7 @@ SAMPLE_PROMOTIONS = [
         "id": "1",
         "title": "Financiamiento 0% APR",
         "description": "Hasta 60 meses sin intereses en vehículos seleccionados",
-        "valid_until": date(2025, 2, 28),
+        "valid_until": "2025-02-28",
         "promotion_type": "financing",
         "image": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
         "terms": "Aplica para vehículos selectos. Sujeto a aprobación crediticia.",
