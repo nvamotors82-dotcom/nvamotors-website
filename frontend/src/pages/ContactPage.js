@@ -157,7 +157,7 @@ const ContactPage = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        placeholder="tu@email.com"
+                        placeholder="nvamotors82@gmail.com"
                       />
                     </div>
                   </div>
