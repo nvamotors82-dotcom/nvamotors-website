@@ -286,7 +286,7 @@ def test_testimonials_endpoints():
                 testimonials = data["testimonials"]
                 print_success(f"Get testimonials working - Found {len(testimonials)} approved testimonials")
                 if testimonials:
-                    print_info(f"Sample testimonial from: {testimonials[0]['customer_name']}")
+                    print_info(f"Sample testimonial from: {testimonials[0]['name']}")
                 else:
                     print_warning("No approved testimonials found")
             else:
