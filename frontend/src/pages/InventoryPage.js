@@ -240,12 +240,23 @@ const InventoryPage = () => {
         {/* Results */}
         <div className="mb-6">
           <p className="text-gray-600">
-            Mostrando {filteredVehicles.length} de {mockVehicles.length} vehículos
+            {loading ? 'Cargando...' : `Mostrando ${filteredVehicles.length} vehículos`}
           </p>
         </div>
 
         {/* Vehicle Grid */}
-        {filteredVehicles.length > 0 ? (
+        {loading ? (
+          <div className="flex justify-center py-16">
+            <Loader2 className="h-12 w-12 animate-spin text-blue-600" />
+          </div>
+        ) : error ? (
+          <div className="text-center py-16">
+            <p className="text-red-600 mb-4">{error}</p>
+            <Button onClick={() => window.location.reload()}>
+              Reintentar
+            </Button>
+          </div>
+        ) : filteredVehicles.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredVehicles.map((vehicle) => (
               <VehicleCard key={vehicle.id} vehicle={vehicle} />
