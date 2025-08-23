@@ -13,6 +13,9 @@ import { useToast } from '../hooks/use-toast';
 
 const FAQPage = () => {
   const { toast } = useToast();
+  const [faqs, setFaqs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [customQuestion, setCustomQuestion] = useState({
     name: '',
@@ -20,18 +23,45 @@ const FAQPage = () => {
     question: ''
   });
 
-  const filteredFAQs = mockFAQs.filter(faq =>
+  useEffect(() => {
+    const fetchFAQs = async () => {
+      try {
+        setLoading(true);
+        const response = await apiService.getFAQs();
+        setFaqs(response.faqs || []);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching FAQs:', err);
+        setError('Error al cargar preguntas frecuentes');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFAQs();
+  }, []);
+
+  const filteredFAQs = faqs.filter(faq =>
     faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
     faq.answer.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleCustomQuestionSubmit = (e) => {
+  const handleCustomQuestionSubmit = async (e) => {
     e.preventDefault();
-    toast({
-      title: "Pregunta enviada",
-      description: "Te responderemos pronto por email o teléfono.",
-    });
-    setCustomQuestion({ name: '', email: '', question: '' });
+    try {
+      await apiService.submitFAQQuestion(customQuestion);
+      toast({
+        title: "Pregunta enviada",
+        description: "Te responderemos pronto por email o teléfono.",
+      });
+      setCustomQuestion({ name: '', email: '', question: '' });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "No se pudo enviar la pregunta. Inténtalo nuevamente.",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleInputChange = (e) => {
