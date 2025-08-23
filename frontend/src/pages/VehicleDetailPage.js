@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -18,9 +18,10 @@ import {
   Shield,
   Phone,
   MessageCircle,
-  Check
+  Check,
+  Loader2
 } from 'lucide-react';
-import { mockVehicles } from '../data/mockData';
+import apiService from '../services/api';
 
 const VehicleDetailPage = () => {
   const { id } = useParams();
