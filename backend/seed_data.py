@@ -203,7 +203,7 @@ SAMPLE_TESTIMONIALS = [
         "rating": 5,
         "comment": "Proceso muy transparente y rápido. El financiamiento fue aprobado sin complicaciones.",
         "vehicle": "Honda Civic 2022",
-        "date": date(2024, 12, 10),
+        "date": datetime(2024, 12, 10),
         "is_approved": True,
         "created_at": datetime.utcnow(),
         "updated_at": datetime.utcnow()
