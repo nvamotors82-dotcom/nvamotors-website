@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import InventoryPage from "./pages/InventoryPage";
 import ContactPage from "./pages/ContactPage";
 import VehicleDetailPage from "./pages/VehicleDetailPage";
+import { Toaster } from "./components/ui/toaster";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/vehicle/:id" element={<VehicleDetailPage />} />
         </Routes>
       </BrowserRouter>
+      <Toaster />
     </div>
   );
 }
