@@ -175,7 +175,7 @@ SAMPLE_PROMOTIONS = [
         "id": "3",
         "title": "Especial de Fin de Año",
         "description": "Hasta $3,000 de descuento en vehículos 2023-2024",
-        "valid_until": datetime(2025, 1, 15),
+        "valid_until": date(2025, 1, 15),
         "promotion_type": "discount",
         "image": "https://images.unsplash.com/photo-1485291571150-772bcfc10da5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
         "terms": "Aplica solo en vehículos del inventario 2023-2024.",
