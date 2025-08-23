@@ -164,6 +164,7 @@ const FinanceCalculator = () => {
                 onClick={calculatePayments}
                 className="w-full bg-green-600 hover:bg-green-700 text-white py-3 text-lg"
                 size="lg"
+                type="button"
               >
                 <Calculator className="mr-2 h-5 w-5" />
                 {t('calculator.calculate')}
