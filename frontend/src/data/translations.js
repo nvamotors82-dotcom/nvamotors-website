@@ -237,7 +237,15 @@ export const translations = {
       close: "Close",
       next: "Next",
       previous: "Previous",
-      required: "Required"
+      required: "Required",
+      results: "Results",
+      founders: "Founders",
+      qualityGuaranteed: "Quality Guaranteed",
+      inspection150Points: "150-point inspection",
+      loanAmount: "Loan Amount",
+      enterValues: "Enter values to calculate your payments",
+      importantInfo: "Important Information",
+      testDriveInfo: "Test drives require valid identification and are subject to availability. We will contact you to confirm your appointment."
     }
   }
 };
