@@ -232,10 +232,8 @@ metadata:
 
 test_plan:
   current_focus: []
-  stuck_tasks:
-    - "Backend Integration - Vehicles"
-    - "Backend Integration - Other Data"
-  test_all: true
+  stuck_tasks: []
+  test_all: false
   test_priority: "high_first"
 
 backend:
