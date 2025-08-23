@@ -214,7 +214,7 @@ SAMPLE_TESTIMONIALS = [
         "rating": 4,
         "comment": "Gran variedad de vehículos y personal muy profesional. Recomendado 100%.",
         "vehicle": "Ford F-150 2024",
-        "date": datetime(2024, 12, 8),
+        "testimonial_date": "2024-12-08",
         "is_approved": True,
         "created_at": datetime.utcnow(),
         "updated_at": datetime.utcnow()
