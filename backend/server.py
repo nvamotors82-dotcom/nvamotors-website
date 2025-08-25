@@ -44,6 +44,7 @@ api_router.include_router(contact.router)
 api_router.include_router(faqs.router)
 api_router.include_router(promotions.router)
 api_router.include_router(testimonials.router)
+api_router.include_router(test_drives.router)
 
 # Include the router in the main app
 app.include_router(api_router)
