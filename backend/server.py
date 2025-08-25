@@ -8,7 +8,7 @@ from pathlib import Path
 from datetime import datetime
 
 # Import routes
-from routes import vehicles, contact, faqs, promotions, testimonials
+from routes import vehicles, contact, faqs, promotions, testimonials, test_drives
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
