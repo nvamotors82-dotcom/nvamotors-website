@@ -5,6 +5,7 @@ from models.faq import FAQ, FAQCreate, FAQUpdate, FAQQuestion, FAQQuestionCreate
 from datetime import datetime
 import os
 from motor.motor_asyncio import AsyncIOMotorClient
+from services.notification_service import notification_service
 
 router = APIRouter(prefix="/faqs", tags=["faqs"])
 
