@@ -24,6 +24,12 @@ async def submit_contact_form(
     result = await db.contact_submissions.insert_one(contact_obj.dict())
     
     if result.inserted_id:
+        # Send notifications
+        try:
+            await notification_service.send_contact_form_notification(contact.dict())
+        except Exception as e:
+            print(f"Notification error: {e}")  # Log but don't fail the request
+        
         return {
             "success": True,
             "message": "Contact form submitted successfully",
