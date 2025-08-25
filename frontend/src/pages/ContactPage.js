@@ -18,7 +18,7 @@ import {
   Calendar,
   CreditCard
 } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../context/LanguageContext';
 import { useToast } from '../hooks/use-toast';
 import { companyInfo } from '../data/mockData';
 import apiService from '../services/api';
