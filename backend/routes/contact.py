@@ -62,6 +62,12 @@ async def submit_custom_search(
     result = await db.custom_search_requests.insert_one(search_obj.dict())
     
     if result.inserted_id:
+        # Send notifications
+        try:
+            await notification_service.send_custom_search_notification(search_request.dict())
+        except Exception as e:
+            print(f"Notification error: {e}")  # Log but don't fail the request
+        
         return {
             "success": True,
             "message": "Custom search request submitted successfully",
