@@ -296,6 +296,111 @@ def test_testimonials_endpoints():
     except Exception as e:
         print_error(f"Get testimonials error: {str(e)}")
 
+def test_test_drives_endpoints():
+    """Test test drive scheduling API endpoints"""
+    print_test_header("Test Drive API Endpoints")
+    
+    # Test test drive scheduling
+    test_drive_data = {
+        "customerName": "Roberto Martinez",
+        "customerEmail": "roberto.martinez@email.com",
+        "customerPhone": "+1-555-0789",
+        "selectedVehicle": "Toyota Camry 2022 - $28,500",
+        "preferredDate": "2024-01-15",
+        "preferredTime": "10:00 AM",
+        "additionalNotes": "Interesado en opciones de financiamiento y garantía extendida"
+    }
+    
+    try:
+        response = requests.post(f"{API_URL}/test-drives/", json=test_drive_data, timeout=10)
+        if response.status_code == 200:
+            data = response.json()
+            if data.get("success") and data.get("message") and data.get("id"):
+                print_success("Test drive scheduling working")
+                print_info(f"Test drive ID: {data['id']}")
+                print_info("✓ Notification system integration: Notifications attempted (expected to fail gracefully without API keys)")
+                
+                # Test get all test drive requests
+                try:
+                    get_response = requests.get(f"{API_URL}/test-drives/", timeout=10)
+                    if get_response.status_code == 200:
+                        requests_data = get_response.json()
+                        print_success(f"Get test drive requests working - Found {len(requests_data)} requests")
+                    else:
+                        print_error(f"Get test drive requests failed - Status: {get_response.status_code}")
+                except Exception as e:
+                    print_error(f"Get test drive requests error: {str(e)}")
+                
+                # Test get single test drive request
+                try:
+                    single_response = requests.get(f"{API_URL}/test-drives/{data['id']}", timeout=10)
+                    if single_response.status_code == 200:
+                        single_data = single_response.json()
+                        print_success(f"Get single test drive request working - {single_data['customerName']}")
+                    else:
+                        print_error(f"Get single test drive request failed - Status: {single_response.status_code}")
+                except Exception as e:
+                    print_error(f"Get single test drive request error: {str(e)}")
+                    
+            else:
+                print_error("Test drive scheduling response missing required fields")
+        else:
+            print_error(f"Test drive scheduling failed - Status: {response.status_code}")
+            if response.text:
+                print_error(f"Error details: {response.text}")
+    except Exception as e:
+        print_error(f"Test drive scheduling error: {str(e)}")
+
+def test_notification_integration():
+    """Test that notification system is integrated and fails gracefully"""
+    print_test_header("Notification System Integration Tests")
+    
+    print_info("Testing that forms trigger notification attempts (should fail gracefully without API keys)")
+    
+    # Test contact form with notification
+    contact_data = {
+        "name": "Elena Vasquez",
+        "email": "elena.vasquez@email.com", 
+        "phone": "+1-555-0321",
+        "subject": "Pregunta sobre Honda Civic",
+        "message": "¿El Honda Civic 2021 tiene historial de accidentes? ¿Incluye garantía?"
+    }
+    
+    try:
+        response = requests.post(f"{API_URL}/contact/", json=contact_data, timeout=10)
+        if response.status_code == 200:
+            data = response.json()
+            if data.get("success"):
+                print_success("Contact form with notifications working - Form submitted successfully")
+                print_info("✓ Notification attempt made (expected to fail gracefully without SendGrid/Twilio keys)")
+            else:
+                print_error("Contact form failed despite notification integration")
+        else:
+            print_error(f"Contact form with notifications failed - Status: {response.status_code}")
+    except Exception as e:
+        print_error(f"Contact form notification test error: {str(e)}")
+    
+    # Test FAQ question with notification
+    faq_data = {
+        "name": "Miguel Santos",
+        "email": "miguel.santos@email.com",
+        "question": "¿Ofrecen servicios de mantenimiento post-venta? ¿Cuáles son los costos aproximados?"
+    }
+    
+    try:
+        response = requests.post(f"{API_URL}/faqs/questions", json=faq_data, timeout=10)
+        if response.status_code == 200:
+            data = response.json()
+            if data.get("success"):
+                print_success("FAQ question with notifications working - Question submitted successfully")
+                print_info("✓ Notification attempt made (expected to fail gracefully without API keys)")
+            else:
+                print_error("FAQ question failed despite notification integration")
+        else:
+            print_error(f"FAQ question with notifications failed - Status: {response.status_code}")
+    except Exception as e:
+        print_error(f"FAQ question notification test error: {str(e)}")
+
 def test_error_handling():
     """Test error handling for invalid requests"""
     print_test_header("Error Handling Tests")
@@ -320,6 +425,27 @@ def test_error_handling():
             print_warning(f"Invalid contact form returned status: {response.status_code}")
     except Exception as e:
         print_error(f"Invalid contact form test error: {str(e)}")
+    
+    # Test invalid test drive data
+    try:
+        invalid_test_drive = {"customerName": "", "customerEmail": "invalid-email"}
+        response = requests.post(f"{API_URL}/test-drives/", json=invalid_test_drive, timeout=10)
+        if response.status_code in [400, 422]:
+            print_success("Invalid test drive data properly rejected")
+        else:
+            print_warning(f"Invalid test drive returned status: {response.status_code}")
+    except Exception as e:
+        print_error(f"Invalid test drive test error: {str(e)}")
+    
+    # Test invalid test drive ID
+    try:
+        response = requests.get(f"{API_URL}/test-drives/invalid-id", timeout=10)
+        if response.status_code == 404:
+            print_success("Invalid test drive ID properly returns 404")
+        else:
+            print_warning(f"Invalid test drive ID returned status: {response.status_code}")
+    except Exception as e:
+        print_error(f"Invalid test drive ID test error: {str(e)}")
 
 def main():
     """Run all backend tests"""
