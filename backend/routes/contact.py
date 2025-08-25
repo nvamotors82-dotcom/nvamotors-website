@@ -4,6 +4,7 @@ from motor.motor_asyncio import AsyncIOMotorDatabase
 from models.contact import ContactSubmission, ContactSubmissionCreate, CustomSearchRequest, CustomSearchRequestCreate
 import os
 from motor.motor_asyncio import AsyncIOMotorClient
+from services.notification_service import notification_service
 
 router = APIRouter(prefix="/contact", tags=["contact"])
 
