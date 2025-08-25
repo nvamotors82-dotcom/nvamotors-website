@@ -464,6 +464,8 @@ def main():
     test_faqs_endpoints()
     test_promotions_endpoints()
     test_testimonials_endpoints()
+    test_test_drives_endpoints()  # New test drive endpoint
+    test_notification_integration()  # New notification system tests
     test_error_handling()
     
     print(f"\n{Colors.BOLD}{Colors.BLUE}")
