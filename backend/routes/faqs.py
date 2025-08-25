@@ -83,6 +83,12 @@ async def submit_faq_question(
     result = await db.faq_questions.insert_one(question_obj.dict())
     
     if result.inserted_id:
+        # Send notifications
+        try:
+            await notification_service.send_faq_question_notification(question.dict())
+        except Exception as e:
+            print(f"Notification error: {e}")  # Log but don't fail the request
+        
         return {
             "success": True,
             "message": "Question submitted successfully",
