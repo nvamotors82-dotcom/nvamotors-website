@@ -24,6 +24,7 @@ const HomePage = () => {
       <Services />
       <FinanceCalculator />
       <TestDriveScheduler />
+      <SpecialOffers />
       <CustomSearchForm />
       <EnhancedTestimonials />
       <CTASection />
