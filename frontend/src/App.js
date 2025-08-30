@@ -25,6 +25,11 @@ function App() {
             <Route path="/vehicle/:id" element={<VehicleDetailPage />} />
           </Routes>
         </BrowserRouter>
+        
+        {/* WhatsApp Chat - Available on all pages */}
+        <WhatsAppChat />
+        
+        {/* Toast notifications */}
         <Toaster />
       </div>
     </LanguageProvider>
