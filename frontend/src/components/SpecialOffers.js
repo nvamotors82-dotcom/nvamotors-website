@@ -14,7 +14,8 @@ import {
   Phone,
   MessageCircle,
   AlertCircle,
-  Percent
+  Percent,
+  Shield
 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
