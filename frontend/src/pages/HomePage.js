@@ -9,6 +9,7 @@ import ImpressiveStats from '../components/ImpressiveStats';
 import FinanceCalculator from '../components/FinanceCalculator';
 import TestDriveScheduler from '../components/TestDriveScheduler';
 import CustomSearchForm from '../components/CustomSearchForm';
+import SpecialOffers from '../components/SpecialOffers';
 import EnhancedTestimonials from '../components/EnhancedTestimonials';
 import CTASection from '../components/CTASection';
 
