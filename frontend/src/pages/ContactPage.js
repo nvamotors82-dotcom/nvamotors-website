@@ -46,12 +46,21 @@ const ContactPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await apiService.submitContactForm(formData);
+      // First, save to backend database (optional - can be removed if you prefer only email)
+      try {
+        await apiService.submitContactForm(formData);
+      } catch (backendError) {
+        console.log('Backend submission failed, continuing with email only:', backendError);
+      }
+
+      // Send email using EmailJS
+      await emailService.sendContactEmail(formData);
+      
       toast({
-        title: language === 'es' ? "Mensaje enviado" : "Message sent",
+        title: language === 'es' ? "Mensaje enviado ✅" : "Message sent ✅",
         description: language === 'es' 
-          ? "Nos pondremos en contacto contigo pronto." 
-          : "We will get back to you soon.",
+          ? "Tu mensaje ha sido enviado por email. Nos pondremos en contacto contigo pronto." 
+          : "Your message has been sent via email. We will get back to you soon.",
       });
       
       setFormData({
@@ -62,6 +71,7 @@ const ContactPage = () => {
         message: ''
       });
     } catch (error) {
+      console.error('Contact form submission error:', error);
       toast({
         title: t('common.error'),
         description: language === 'es'
