@@ -9,6 +9,7 @@ import { Calendar, Clock, Car, User, Mail, Phone as PhoneIcon } from 'lucide-rea
 import { useLanguage } from '../contexts/LanguageContext';
 import { useToast } from '../hooks/use-toast';
 import apiService from '../services/api';
+import emailService from '../services/emailService';
 
 const TestDriveScheduler = () => {
   const { t } = useLanguage();
