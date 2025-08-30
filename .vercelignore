@@ -1,0 +1,8 @@
+backend/
+node_modules/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.log
+.DS_Store
