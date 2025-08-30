@@ -59,12 +59,31 @@ const TestDriveScheduler = () => {
     setLoading(true);
 
     try {
-      // Mock submission for now - you can implement the backend endpoint later
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Get selected vehicle info
+      const selectedVehicle = vehicles.find(v => v.id === formData.vehicleId);
+      const vehicleInfo = selectedVehicle 
+        ? `${selectedVehicle.year} ${selectedVehicle.make} ${selectedVehicle.model} - $${selectedVehicle.price.toLocaleString()}`
+        : 'Vehículo no especificado';
+
+      // Prepare data for EmailJS
+      const emailData = {
+        ...formData,
+        vehicleInfo: vehicleInfo
+      };
+
+      // Try to save to backend (optional)
+      try {
+        await apiService.scheduleTestDrive(formData);
+      } catch (backendError) {
+        console.log('Backend test drive submission failed, continuing with email only:', backendError);
+      }
+
+      // Send email using EmailJS
+      await emailService.sendTestDriveEmail(emailData);
       
       toast({
-        title: t('testDrive.success'),
-        description: t('testDrive.successDesc'),
+        title: t('testDrive.success') || 'Test Drive Programado ✅',
+        description: t('testDrive.successDesc') || 'Tu solicitud de test drive ha sido enviada por email. Te contactaremos pronto para confirmar.',
       });
 
       setFormData({
@@ -77,6 +96,7 @@ const TestDriveScheduler = () => {
         additionalComments: ''
       });
     } catch (error) {
+      console.error('Test drive submission error:', error);
       toast({
         title: t('common.error'),
         description: "Error al programar la cita. Inténtalo nuevamente.",
