@@ -4,10 +4,12 @@ import Footer from '../components/Footer';
 import HeroSection from '../components/HeroSection';
 import FeaturedVehicles from '../components/FeaturedVehicles';
 import Services from '../components/Services';
+import TrustBadges from '../components/TrustBadges';
+import ImpressiveStats from '../components/ImpressiveStats';
 import FinanceCalculator from '../components/FinanceCalculator';
 import TestDriveScheduler from '../components/TestDriveScheduler';
-import Testimonials from '../components/Testimonials';
 import CustomSearchForm from '../components/CustomSearchForm';
+import EnhancedTestimonials from '../components/EnhancedTestimonials';
 import CTASection from '../components/CTASection';
 
 const HomePage = () => {
