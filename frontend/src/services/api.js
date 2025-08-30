@@ -98,6 +98,17 @@ class ApiService {
     }
   }
 
+  // Test Drives API
+  async scheduleTestDrive(testDriveData) {
+    try {
+      const response = await axios.post(`${API}/test-drives/`, testDriveData);
+      return response.data;
+    } catch (error) {
+      console.error('Error scheduling test drive:', error);
+      throw error;
+    }
+  }
+
   // Health check
   async healthCheck() {
     try {
