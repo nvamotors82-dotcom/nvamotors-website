@@ -22,6 +22,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { useToast } from '../hooks/use-toast';
 import { companyInfo } from '../data/mockData';
 import apiService from '../services/api';
+import emailService from '../services/emailService';
 
 const ContactPage = () => {
   const { t, language } = useLanguage();
