@@ -17,12 +17,14 @@ const HomePage = () => {
     <div className="min-h-screen">
       <Navbar />
       <HeroSection />
+      <TrustBadges />
       <FeaturedVehicles />
+      <ImpressiveStats />
       <Services />
       <FinanceCalculator />
       <TestDriveScheduler />
       <CustomSearchForm />
-      <Testimonials />
+      <EnhancedTestimonials />
       <CTASection />
       <Footer />
     </div>
