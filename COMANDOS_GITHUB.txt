@@ -1,0 +1,24 @@
+# COMANDOS PARA SUBIR A GITHUB (Copiar y pegar uno por uno)
+
+# 1. Ir a la carpeta del proyecto
+cd /app
+
+# 2. Inicializar Git
+git init
+
+# 3. Agregar todos los archivos
+git add .
+
+# 4. Hacer el primer commit
+git commit -m "Initial NVAMOTORS website - Professional car dealership with all features"
+
+# 5. Cambiar a branch main
+git branch -M main
+
+# 6. Agregar el repositorio remoto (CAMBIAR 'TU_USUARIO' por tu username de GitHub)
+git remote add origin https://github.com/TU_USUARIO/nvamotors-website.git
+
+# 7. Subir archivos a GitHub
+git push -u origin main
+
+# ¡LISTO! Tu proyecto estará en GitHub
