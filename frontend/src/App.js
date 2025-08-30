@@ -9,6 +9,7 @@ import VehicleDetailPage from "./pages/VehicleDetailPage";
 import PromotionsPage from "./pages/PromotionsPage";
 import FAQPage from "./pages/FAQPage";
 import { Toaster } from "./components/ui/toaster";
+import WhatsAppChat from "./components/WhatsAppChat";
 
 function App() {
   return (
