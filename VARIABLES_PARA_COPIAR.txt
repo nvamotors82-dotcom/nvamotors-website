@@ -1,0 +1,25 @@
+🔥 VARIABLES DE ENTORNO PARA VERCEL - COPIAR Y PEGAR 🔥
+
+=== VARIABLE 1 ===
+Name: REACT_APP_EMAILJS_PUBLIC_KEY
+Value: xWdEifU1XvRWVtdWW
+
+=== VARIABLE 2 ===
+Name: REACT_APP_EMAILJS_SERVICE_ID
+Value: service_6numtzx
+
+=== VARIABLE 3 ===
+Name: REACT_APP_EMAILJS_CONTACT_TEMPLATE_ID
+Value: nvamotors_contact_templa
+
+=== VARIABLE 4 ===
+Name: REACT_APP_EMAILJS_TESTDRIVE_TEMPLATE_ID
+Value: nvamotors_testdrive_temp
+
+⚠️ IMPORTANTE: Root Directory debe ser "frontend" (no dejar vacío)
+
+🎯 CONFIGURACIÓN VERCEL:
+- Framework: Create React App (auto-detectado)
+- Root Directory: frontend ← CAMBIAR ESTO
+- Build Command: yarn build (auto)
+- Output Directory: build (auto)
